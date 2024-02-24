@@ -8,7 +8,7 @@ export default function Home() {
         <>
             <NavBar />
             <main>
-                <Box className="relative flex animate-initialAnimation flex-col items-center justify-center bg-primary-color">
+                <Box className="relative flex animate-initialAnimation flex-col items-center justify-center bg-primary-color dark:bg-blue-900">
                     <h1 className="break-inside-avoid text-center font-black text-white">
                         Hey, there!
                         <br />
