@@ -2,10 +2,12 @@
 
 import Box from '@/components/Box';
 import { NavBar } from '@/components/NavBar';
+import { WIP } from '@/components/WIP';
 
 export default function Home() {
     return (
         <>
+            <WIP />
             <NavBar />
             <main>
                 <Box className="relative flex animate-initialAnimation flex-col items-center justify-center bg-primary-color dark:bg-blue-900">

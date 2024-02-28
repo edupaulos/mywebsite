@@ -9,8 +9,13 @@ module.exports = {
             },
             animation: {
                 initialAnimation: 'initialAnimation 1s forwards',
+                'marquee-infinite': 'marquee 25s linear infinite',
             },
             keyframes: {
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-100%)' },
+                },
                 initialAnimation: {
                     from: {
                         margin: '0',
