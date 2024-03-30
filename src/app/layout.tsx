@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@/utils/theme-provider';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 import { Poppins } from 'next/font/google';
@@ -27,6 +28,7 @@ export default function RootLayout({
                     enableSystem
                 >
                     {children}
+                    <SpeedInsights />
                 </ThemeProvider>
             </body>
         </html>
