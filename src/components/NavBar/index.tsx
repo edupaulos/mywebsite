@@ -1,26 +1,54 @@
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useState } from 'react';
-import { GitHub, Linkedin, Sun } from 'react-feather';
+import { GitHub, Linkedin, Sun, Moon, Monitor } from 'react-feather';
 
 export const NavBar: React.FC = () => {
     const [hoveredLink, setHoveredLink] = useState<HTMLElement | null>(null);
     const [isHovered, setIsHovered] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const { setTheme } = useTheme();
 
     const handleLinkEnter = (id: string) => {
         setHoveredLink(document.getElementById(`${id}-link`) as HTMLElement);
     };
 
-    const toggleDarkMode = () => {
-        const currentColorTheme = localStorage.getItem('color-theme');
-        const isDarkMode = currentColorTheme === 'dark';
+    const toogleDropdown = () => {
+        setIsDropdownOpen((prev) => !prev);
+    };
 
-        document.documentElement.classList.toggle('dark', !isDarkMode);
-        localStorage.setItem('color-theme', isDarkMode ? 'light' : 'dark');
+    const themeDropdown = () => {
+        return (
+            <div className="absolute end-0 z-10 my-16 flex-col rounded-3xl bg-white/30 p-5 text-white">
+                <div
+                    className="mb-2 flex cursor-pointer items-center"
+                    onClick={() => setTheme('light')}
+                >
+                    <Sun />
+                    <span className="ml-2">Light</span>
+                </div>
+                <div
+                    className="mb-2 flex cursor-pointer items-center"
+                    onClick={() => setTheme('dark')}
+                >
+                    <Moon />
+                    <span className="ml-2">Dark</span>
+                </div>
+                <div
+                    className="flex cursor-pointer items-center"
+                    onClick={() => setTheme('system')}
+                >
+                    <Monitor />
+                    <span className="ml-2">System</span>
+                </div>
+            </div>
+        );
     };
 
     return (
         <nav
-            className="fixed left-1/2 top-24 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/50 px-10 py-5 text-2xl backdrop-blur-md"
+            className="fixed left-1/2 top-28 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-10 py-5 text-2xl backdrop-blur-md"
             onMouseLeave={() => {
                 setIsHovered(false);
             }}
@@ -76,9 +104,10 @@ export const NavBar: React.FC = () => {
                 />
                 <Sun
                     className=" stroke-white hover:fill-white/50"
-                    onClick={() => toggleDarkMode()}
+                    onClick={toogleDropdown}
                 />
             </div>
+            {isDropdownOpen && themeDropdown()}
         </nav>
     );
 };
