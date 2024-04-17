@@ -26,13 +26,16 @@ const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
 
     return (
         <motion.nav
-            className="fixed left-1/2 top-20 z-10 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
+            className="fixed left-1/2 top-24 z-10 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
             onMouseLeave={() => {
                 setIsHovered(false);
             }}
             onMouseEnter={() => setIsHovered(true)}
-            animate={{ width: scrollProgress > 0.2 ? '27rem' : '50rem' }}
-            transition={{ type: 'Inertia' }}
+            animate={{
+                width: scrollProgress > 0.2 ? '27rem' : '50rem',
+                top: scrollProgress > 0.2 ? '4rem' : '',
+            }}
+            transition={{ type: 'Tween' }}
         >
             {hoveredLink && (
                 <div
