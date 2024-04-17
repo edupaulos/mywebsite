@@ -1,14 +1,20 @@
-import { useTheme } from 'next-themes';
+'use client';
+
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-import { GitHub, Linkedin, Sun, Moon, Monitor } from 'react-feather';
+import { GitHub, Linkedin, Sun } from 'react-feather';
+import { ThemeDropdown } from './ThemeDropdown';
+import { scrollManagement } from '@/utils/ScrollManagement';
 
-export const NavBar: React.FC = () => {
+export interface NavBarProps {
+    scrollProgress: number;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
     const [hoveredLink, setHoveredLink] = useState<HTMLElement | null>(null);
     const [isHovered, setIsHovered] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const { setTheme } = useTheme();
 
     const handleLinkEnter = (id: string) => {
         setHoveredLink(document.getElementById(`${id}-link`) as HTMLElement);
@@ -18,52 +24,26 @@ export const NavBar: React.FC = () => {
         setIsDropdownOpen((prev) => !prev);
     };
 
-    const themeDropdown = () => {
-        return (
-            <div className="absolute end-0 z-10 my-16 flex-col rounded-3xl bg-white/30 p-5 text-white">
-                <div
-                    className="mb-2 flex cursor-pointer items-center"
-                    onClick={() => setTheme('light')}
-                >
-                    <Sun />
-                    <span className="ml-2">Light</span>
-                </div>
-                <div
-                    className="mb-2 flex cursor-pointer items-center"
-                    onClick={() => setTheme('dark')}
-                >
-                    <Moon />
-                    <span className="ml-2">Dark</span>
-                </div>
-                <div
-                    className="flex cursor-pointer items-center"
-                    onClick={() => setTheme('system')}
-                >
-                    <Monitor />
-                    <span className="ml-2">System</span>
-                </div>
-            </div>
-        );
-    };
-
     return (
-        <nav
-            className="fixed left-1/2 top-28 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-10 py-5 text-2xl backdrop-blur-md"
+        <motion.nav
+            className="fixed left-1/2 top-20 z-10 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
             onMouseLeave={() => {
                 setIsHovered(false);
             }}
             onMouseEnter={() => setIsHovered(true)}
+            animate={{ width: scrollProgress > 0.2 ? '27rem' : '50rem' }}
+            transition={{ type: 'Inertia' }}
         >
             {hoveredLink && (
                 <div
-                    className="absolute rounded-full bg-white p-2 opacity-80 transition-all"
+                    className="absolute rounded-full bg-white p-1 opacity-80 transition-all"
                     style={{
                         width: hoveredLink.offsetWidth,
                         bottom: '0',
                         left: hoveredLink.offsetLeft,
                         transform: `translateX(0) scale(${isHovered ? 1 : 0})`,
                     }}
-                ></div>
+                />
             )}
             {['home', 'about', 'blog', 'contacts'].map((id) => (
                 <Link key={id} href={`#${id}`}>
@@ -83,7 +63,7 @@ export const NavBar: React.FC = () => {
                 </Link>
             ))}
             <div
-                className="ml-auto flex cursor-pointer gap-12"
+                className="ml-auto flex cursor-pointer gap-12 overflow-hidden"
                 onMouseEnter={() => {
                     setIsHovered(false);
                 }}
@@ -107,7 +87,9 @@ export const NavBar: React.FC = () => {
                     onClick={toogleDropdown}
                 />
             </div>
-            {isDropdownOpen && themeDropdown()}
-        </nav>
+            {isDropdownOpen && <ThemeDropdown />}
+        </motion.nav>
     );
 };
+
+export default scrollManagement(NavBar);
