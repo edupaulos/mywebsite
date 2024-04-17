@@ -1,17 +1,13 @@
-import { ThemeProvider } from '@/utils/theme-provider';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
-import { Poppins } from 'next/font/google';
-import NavBar from '@/components/NavBar';
+import { Sora } from 'next/font/google';
 
 export const metadata = {
     title: 'Eduardo Paulos - Front-End Dev',
     description: 'Hello! Welcome to my corner of the internet!',
 };
 
-const poppins = Poppins({
-    weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
+const sora = Sora({
     subsets: ['latin'],
 });
 
@@ -21,18 +17,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={poppins.className}>
-            <body className="dark:bg-zinc-800">
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                >
-                    <NavBar />
-                    {children}
-                    <SpeedInsights />
-                </ThemeProvider>
-            </body>
+        <html lang="en" className={sora.className}>
+            <body>{children}</body>
         </html>
     );
 }
