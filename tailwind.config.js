@@ -27,9 +27,9 @@ module.exports = {
                         'border-radius': '0',
                     },
                     to: {
-                        margin: '3rem',
-                        height: 'calc(100vh - 6rem)',
-                        'border-radius': '2rem',
+                        margin: '2.5rem',
+                        height: 'calc(100vh - 5rem)',
+                        'border-radius': '2.5rem',
                     },
                 },
             },
