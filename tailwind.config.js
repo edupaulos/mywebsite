@@ -4,6 +4,10 @@ module.exports = {
     darkMode: 'class',
     theme: {
         extend: {
+            backgroundImage: {
+                'noise-pattern': "url('/noise.svg')",
+            },
+
             colors: {
                 'primary-color': 'hsla(var(--primary-color))',
             },
@@ -23,9 +27,9 @@ module.exports = {
                         'border-radius': '0',
                     },
                     to: {
-                        margin: '2rem',
-                        height: 'calc(100vh - 4rem)',
-                        'border-radius': '2rem',
+                        margin: '2.5rem',
+                        height: 'calc(100vh - 5rem)',
+                        'border-radius': '2.5rem',
                     },
                 },
             },
