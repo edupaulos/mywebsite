@@ -3,8 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 import { Poppins } from 'next/font/google';
-import { useScroll } from 'framer-motion';
-import { NavBar } from '@/components/NavBar';
+import NavBar from '@/components/NavBar';
 
 export const metadata = {
     title: 'Eduardo Paulos - Front-End Dev',

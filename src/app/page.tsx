@@ -28,6 +28,7 @@ export default function Home() {
                 <h2 className="flex justify-center align-middle font-extrabold">
                     A little bit about me
                 </h2>
+
                 <p className="text-pretty text-2xl">
                     {' '}
                     Lorem Ipsum is simply dummy text of the printing and
