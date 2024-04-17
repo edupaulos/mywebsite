@@ -1,49 +1,41 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 import { GitHub, Linkedin, Sun } from 'react-feather';
-import { ThemeDropdown } from './ThemeDropdown';
-import { scrollManagement } from '@/utils/ScrollManagement';
 
-export interface NavBarProps {
-    scrollProgress: number;
-}
-
-const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
+export const NavBar: React.FC = () => {
     const [hoveredLink, setHoveredLink] = useState<HTMLElement | null>(null);
     const [isHovered, setIsHovered] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleLinkEnter = (id: string) => {
         setHoveredLink(document.getElementById(`${id}-link`) as HTMLElement);
     };
 
-    const toogleDropdown = () => {
-        setIsDropdownOpen((prev) => !prev);
+    const toggleDarkMode = () => {
+        const currentColorTheme = localStorage.getItem('color-theme');
+        const isDarkMode = currentColorTheme === 'dark';
+
+        document.documentElement.classList.toggle('dark', !isDarkMode);
+        localStorage.setItem('color-theme', isDarkMode ? 'light' : 'dark');
     };
 
     return (
-        <motion.nav
-            className="fixed left-1/2 top-20 z-10 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
+        <nav
+            className="fixed left-1/2 top-24 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/50 px-10 py-5 text-2xl backdrop-blur-md"
             onMouseLeave={() => {
                 setIsHovered(false);
             }}
             onMouseEnter={() => setIsHovered(true)}
-            animate={{ width: scrollProgress > 0.2 ? '27rem' : '50rem' }}
-            transition={{ type: 'Inertia' }}
         >
             {hoveredLink && (
                 <div
-                    className="absolute rounded-full bg-white p-1 opacity-80 transition-all"
+                    className="absolute rounded-full bg-white p-2 opacity-80 transition-all"
                     style={{
                         width: hoveredLink.offsetWidth,
                         bottom: '0',
                         left: hoveredLink.offsetLeft,
                         transform: `translateX(0) scale(${isHovered ? 1 : 0})`,
                     }}
-                />
+                ></div>
             )}
             {['home', 'about', 'blog', 'contacts'].map((id) => (
                 <Link key={id} href={`#${id}`}>
@@ -63,7 +55,7 @@ const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
                 </Link>
             ))}
             <div
-                className="ml-auto flex cursor-pointer gap-12 overflow-hidden"
+                className="ml-auto flex cursor-pointer gap-12"
                 onMouseEnter={() => {
                     setIsHovered(false);
                 }}
@@ -84,12 +76,9 @@ const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
                 />
                 <Sun
                     className=" stroke-white hover:fill-white/50"
-                    onClick={toogleDropdown}
+                    onClick={() => toggleDarkMode()}
                 />
             </div>
-            {isDropdownOpen && <ThemeDropdown />}
-        </motion.nav>
+        </nav>
     );
 };
-
-export default scrollManagement(NavBar);
