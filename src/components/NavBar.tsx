@@ -26,7 +26,7 @@ const NavBar: React.FC<NavBarProps> = ({ scrollProgress }) => {
 
     return (
         <motion.nav
-            className="fixed left-1/2 top-24 z-10 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
+            className="fixed left-1/2 top-24 z-20 mx-auto hidden -translate-x-1/2 -translate-y-1/2 gap-12 rounded-full bg-white/30 px-7 py-3 text-lg backdrop-blur-md md:flex"
             onMouseLeave={() => {
                 setIsHovered(false);
             }}
