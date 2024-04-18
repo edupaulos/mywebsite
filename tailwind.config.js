@@ -27,8 +27,8 @@ module.exports = {
                         'border-radius': '0',
                     },
                     to: {
-                        margin: '2.5rem',
-                        height: 'calc(100vh - 5rem)',
+                        margin: '2rem',
+                        height: 'calc(100vh - 4rem)',
                         'border-radius': '2.5rem',
                     },
                 },
