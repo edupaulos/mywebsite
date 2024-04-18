@@ -4,15 +4,14 @@ export const About = () => {
     return (
         <section
             id="about"
-            className="mx-auto flex max-w-[1216px] flex-col justify-center justify-items-center py-60 align-middle"
+            className="mx-auto flex max-w-[1216px] flex-col items-center justify-center py-52"
         >
-            <h2 className="flex justify-center align-middle font-extrabold">
+            <h2 className=" flex justify-center font-extrabold">
                 A little bit about me
             </h2>
 
-            <div className="grid-cols-2">
-                <p className=" text-pretty text-xl">
-                    {' '}
+            <div className="m-14 flex flex-wrap justify-center gap-10">
+                <p className="mx-auto mb-10 max-w-md text-pretty text-xl font-light">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s, when an unknown
@@ -22,13 +21,17 @@ export const About = () => {
                     essentially unchanged.{' '}
                 </p>
                 <Image
-                    src="/icons/Vector.svg"
+                    src="/profileImg.png"
                     width={100}
                     height={100}
                     alt=""
-                    className=""
+                    className="size-72 rounded-2xl "
                 />
             </div>
+
+            <button className="rounded-md bg-white/20 px-8 py-2 font-light text-white shadow-[0_4px_14px_0_rgb(0,118,255,39%)] backdrop-blur-3xl transition duration-200 ease-linear hover:bg-[rgba(0,118,255,0.9)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)]">
+                See more
+            </button>
         </section>
     );
 };

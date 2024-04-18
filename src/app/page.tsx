@@ -28,7 +28,7 @@ export default function Home() {
 
             <div className="animate-initialAnimation bg-noise-pattern bg-fixed mix-blend-soft-light backdrop-blur-3xl dark:bg-white/30" />
 
-            <About></About>
+            <About />
 
             <footer></footer>
         </main>
