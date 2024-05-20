@@ -2,7 +2,7 @@ import { ThemeProvider } from '@/utils/theme-provider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
-import { Poppins } from 'next/font/google';
+import { Urbanist, Poppins } from 'next/font/google';
 import NavBar from '@/components/NavBar';
 
 export const metadata = {
@@ -10,9 +10,16 @@ export const metadata = {
     description: 'Hello! Welcome to my corner of the internet!',
 };
 
-const poppins = Poppins({
-    weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
+const urbanist = Urbanist({
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
     subsets: ['latin'],
+    variable: '--urbanist',
+});
+
+const hind = Poppins({
+    weight: ['300', '400', '500', '600', '700'],
+    subsets: ['latin'],
+    variable: '--hind',
 });
 
 export default function RootLayout({
@@ -21,7 +28,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={poppins.className}>
+        <html lang="en" className={`${hind.variable} ${urbanist.variable}`}>
             <body className="dark:bg-zinc-800">
                 <ThemeProvider
                     attribute="class"
