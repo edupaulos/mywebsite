@@ -16,7 +16,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-emotion": "^11.0.0",
         "geist": "^1.1.0",
-        "next": "13.4.4",
+        "next": "14.2.25",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-feather": "^2.0.10",
