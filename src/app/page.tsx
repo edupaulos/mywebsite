@@ -3,6 +3,8 @@
 import Box from '@/components/Box';
 import { NavBar } from '@/components/NavBar';
 import { WIP } from '@/components/WIP';
+import Image from 'next/image';
+import Vector from '../../public/icons/Vector.svg';
 
 export default function Home() {
     return (
@@ -22,9 +24,12 @@ export default function Home() {
                     <p className="text-4xl">
                         Welcome to my corner of the internet!
                     </p>
-                    <img
+                    <Image
                         className="absolute left-1/2 top-1/2 mt-96 -translate-x-1/2 -translate-y-1/2 "
-                        src="/icons/Vector.svg"
+                        src={Vector}
+                        alt="Decorative vector graphic"
+                        width={100}
+                        height={100}
                     />
                 </Box>
             </main>
