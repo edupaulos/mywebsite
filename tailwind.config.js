@@ -18,13 +18,11 @@ module.exports = {
                 },
                 initialAnimation: {
                     from: {
-                        margin: '0',
-                        height: '100vh',
-                        'border-radius': '0',
+                        transform: 'translate(0px, 0px) scale(1, 1)',
+                        'border-radius': '0rem',
                     },
                     to: {
-                        margin: '2rem',
-                        height: 'calc(100vh - 4rem)',
+                        transform: 'translate(2rem, 2rem) scale(calc((100vw - 4rem) / 100vw), calc((100vh - 4rem) / 100vh))',
                         'border-radius': '2rem',
                     },
                 },
